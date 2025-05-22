@@ -1,13 +1,13 @@
 package modelo;
+
 import java.util.ArrayList;
 
 public class PalavraChave {
     private String palavra;
-    private ArrayList<TipoMaterial> listaMateriais = new ArrayList<>();
+    private ArrayList<MaterialWeb> listaMateriais = new ArrayList<>();
 
-    public PalavraChave (String palavra, ArrayList<TipoMaterial> listaMateriais) {
+    public PalavraChave (String palavra) {
         this.palavra = palavra;
-        this.listaMateriais = listaMateriais;
     }
 
     public String getPalavra() {
@@ -19,13 +19,27 @@ public class PalavraChave {
 
     }
 
-    public ArrayList<TipoMaterial> getListaMateriais() {
+    public ArrayList<MaterialWeb> getListaMateriais() {
         return listaMateriais;
     }
 
+    public void adicionarMaterial(MaterialWeb m) {
+    if (!listaMateriais.contains(m)) {
+        listaMateriais.add(m);
+        m.getListaPalavrasChave().add(this);  
+    }
+}
 
+    public void removerMaterial(MaterialWeb m) {
+        if (listaMateriais.contains(m)) {
+            listaMateriais.remove(m);
+            m.getListaPalavrasChave().remove(this);
+        }
+    }
+
+    @Override
     public String toString() {
-        return "PalavraChave [palavra=" + palavra + "]";
+        return "palavra = " + palavra;
     }
    
 }

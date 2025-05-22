@@ -1,4 +1,5 @@
 package modelo;
+
 import java.util.ArrayList;
 
 public class MaterialWeb {
@@ -8,12 +9,11 @@ public class MaterialWeb {
     private int nota;
     private ArrayList<PalavraChave> listaPalavrasChave = new ArrayList<>(); 
 
-    public MaterialWeb (String link, String titulo, TipoMaterial tipomaterial, int nota, ArrayList<PalavraChave> listaPalavrasChave) {
+    public MaterialWeb (String link, String titulo, TipoMaterial tipomaterial, int nota) {
         this.link = link;
         this.titulo = titulo;
         this.tipomaterial = tipomaterial;
         setNota(nota);
-        this.listaPalavrasChave = listaPalavrasChave;
     }
 
     public String getLink() {
@@ -55,9 +55,25 @@ public class MaterialWeb {
         return listaPalavrasChave;
     }
 
-
-    public String toString() {
-        return "MaterialWeb [link=" + link + ", titulo=" + titulo + ", tipomaterial=" + tipomaterial + ", nota=" + nota + "]";
+    public void adicionar(PalavraChave p) {
+        if (!listaPalavrasChave.contains(p)) {
+            listaPalavrasChave.add(p);
+            p.adicionarMaterial(this);  
+        }
     }
+
+    public void remover(PalavraChave p) {
+        if (listaPalavrasChave.contains(p)) {
+            listaPalavrasChave.remove(p);
+            p.removerMaterial(this);  
+        }
+    }
+
+
+    @Override
+    public String toString() {
+        return "link = " + link + ", titulo = " + titulo + ", tipomaterial = " + tipomaterial.getNome() + ", nota = " + nota;
+    }
+
 
 }

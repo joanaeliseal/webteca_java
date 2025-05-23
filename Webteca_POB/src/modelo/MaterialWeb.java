@@ -72,8 +72,23 @@ public class MaterialWeb {
 
     @Override
     public String toString() {
-        return "link = " + link + ", titulo = " + titulo + ", tipomaterial = " + tipomaterial.getNome() + ", nota = " + nota;
-    }
+        StringBuilder sb = new StringBuilder();
+        sb.append("link = ").append(link)
+          .append(", titulo = ").append(titulo)
+          .append(", tipomaterial = ").append(tipomaterial.getNome())
+          .append(", nota = ").append(nota)
+          .append(", palavras-chave = [");
 
+        for (PalavraChave p : listaPalavrasChave) {
+            sb.append(p.getPalavra()).append(", ");
+        }
+
+        if (!listaPalavrasChave.isEmpty()) {
+            sb.setLength(sb.length() - 2); // remove a última vírgula
+        }
+
+        sb.append("]");
+        return sb.toString();
+    }
 
 }

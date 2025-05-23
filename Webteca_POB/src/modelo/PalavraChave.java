@@ -39,7 +39,20 @@ public class PalavraChave {
 
     @Override
     public String toString() {
-        return "palavra = " + palavra;
+        StringBuilder sb = new StringBuilder();
+        sb.append("palavra = ").append(palavra).append(", materiais = [");
+
+        for (MaterialWeb m : listaMateriais) {
+            sb.append(m.getTitulo()).append(", ");
+        }
+
+        if (!listaMateriais.isEmpty()) {
+            sb.setLength(sb.length() - 2); // remove a última vírgula
+        }
+
+        sb.append("]");
+        return sb.toString();
     }
-   
+
 }
+

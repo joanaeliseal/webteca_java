@@ -24,16 +24,16 @@ public class PalavraChave {
     }
 
     public void adicionarMaterial(MaterialWeb m) {
-    if (!listaMateriais.contains(m)) {
-        listaMateriais.add(m);
-        m.getListaPalavrasChave().add(this);  
-    }
-}
+	    if (!listaMateriais.contains(m)) {
+	        listaMateriais.add(m);
+	        m.adicionar(this);  
+	    }
+	}
 
     public void removerMaterial(MaterialWeb m) {
         if (listaMateriais.contains(m)) {
             listaMateriais.remove(m);
-            m.getListaPalavrasChave().remove(this);
+            m.remover(this);
         }
     }
 
